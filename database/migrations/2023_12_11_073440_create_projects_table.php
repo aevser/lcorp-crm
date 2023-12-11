@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('name');
             $table->text('settings');
             $table->string('api_token')->unique();
+            $table->string('timezone')->nullable();
+            $table->unsignedInteger('color')->nullable();
+            $table->boolean('enabled')->nullable();
+            $table->unsignedInteger('lead_validation_days')->nullable();
+            $table->boolean('detect_region')->nullable();
+            $table->boolean('calltracking')->nullable();
             $table->timestamps();
         });
     }
