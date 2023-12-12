@@ -22,6 +22,7 @@ class UpdateRequests extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => 'required|exists:users,id',
             'create_projects' => 'boolean',
             'manage_users' => 'boolean',
             'manage_permissions' => 'boolean',
