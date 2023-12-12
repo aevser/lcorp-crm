@@ -12,6 +12,11 @@ class RolesController extends Controller
 {
     public function index(){
 
+        $roles = Role::with(['user:id,name'])
+            ->select(['id', 'user_id'])
+            ->simplePaginate(20);
+
+        return response()->json(['roles' => $roles], 200);
     }
 
     public function show($id){
