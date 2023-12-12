@@ -20,6 +20,9 @@ return new class extends Migration
             $table->json('fields');
             $table->boolean('manage_leeds');
             $table->boolean('export_data');
+            $table->boolean('manage_permissions');
+            $table->boolean('manage_settings');
+            $table->boolean('manage_project');
             $table->timestamps();
         });
     }

@@ -10,7 +10,12 @@ class Permission extends Model
     use HasFactory;
 
     protected $fillable = [
-        'manage_leeds', 'export_data', 'fields',
+        'manage_leeds',
+        'export_data',
+        'fields',
+        'manage_permissions',
+        'manage_settings',
+        'manage_project',
     ];
 
     protected $casts = [
