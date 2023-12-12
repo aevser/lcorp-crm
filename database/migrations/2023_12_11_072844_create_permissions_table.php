@@ -18,7 +18,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->unsignedInteger('project_id');
             $table->json('fields');
-            $table->boolean('manage_leeds');
+            $table->boolean('manage_leads');
             $table->boolean('export_data');
             $table->boolean('manage_permissions');
             $table->boolean('manage_settings');
