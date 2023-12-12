@@ -21,4 +21,8 @@ class Project extends Model
         'detect_region',
         'calltracking'
     ];
+
+    public function permissions(){
+        return $this->hasMany(Permission::class);
+    }
 }
