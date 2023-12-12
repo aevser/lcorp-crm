@@ -18,6 +18,8 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->unsignedInteger('project_id');
             $table->json('fields');
+            $table->boolean('manage_leeds');
+            $table->boolean('export_data');
             $table->timestamps();
         });
     }

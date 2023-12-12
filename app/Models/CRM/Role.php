@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\CRM;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Role extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'manage_leeds', 'export_data', 'fields',
-    ];
-
-    protected $casts = [
-        'fields' => 'array',
+        'create_projects',
+        'manage_users',
+        'manage_permissions',
+        'edit_projects',
+        'global_settings',
     ];
 
     public function user(){
