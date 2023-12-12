@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('permissions', Api\Admin\PermissionsController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ]);
+Route::apiResource('roles', Api\Admin\RolesController::class)->only([
+    'index', 'show', 'store', 'update', 'destroy'
+]);
