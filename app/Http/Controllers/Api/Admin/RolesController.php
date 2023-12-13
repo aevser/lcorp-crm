@@ -30,14 +30,14 @@ class RolesController extends Controller
         return response()->json(['roles' => $roles], 200);
     }
 
-    public function store(StoreRequests $requests, $id){
+    public function store(StoreRequests $request, $id){
 
         $roles = Role::create([
-            'create_projects' => $requests->create_project,
-            'manage_users' => $requests->manage_users,
-            'manage_permissions' => $requests->manage_permissions,
-            'edit_projects' => $requests->edit_projects,
-            'global_settings' => $requests->global_settings,
+            'create_projects' => $request->create_project,
+            'manage_users' => $request->manage_users,
+            'manage_permissions' => $request->manage_permissions,
+            'edit_projects' => $request->edit_projects,
+            'global_settings' => $request->global_settings,
         ]);
 
         if(!$roles){
@@ -47,7 +47,7 @@ class RolesController extends Controller
         return response()->json(['success' => 'Роль успешно добавлена'], 200);
     }
 
-    public function update(UpdateRequests $requests, $id){
+    public function update(UpdateRequests $reques, $id){
 
         $roles = Role::find($id);
 
@@ -56,11 +56,11 @@ class RolesController extends Controller
         }
 
         $roles->update([
-            'create_projects' => $requests->create_project,
-            'manage_users' => $requests->manage_users,
-            'manage_permissions' => $requests->manage_permissions,
-            'edit_projects' => $requests->edit_projects,
-            'global_settings' => $requests->global_settings,
+            'create_projects' => $request->create_project,
+            'manage_users' => $request->manage_users,
+            'manage_permissions' => $request->manage_permissions,
+            'edit_projects' => $request->edit_projects,
+            'global_settings' => $request->global_settings,
         ]);
 
         return response()->json(['success' => 'Роль успешно обновлена'], 200);

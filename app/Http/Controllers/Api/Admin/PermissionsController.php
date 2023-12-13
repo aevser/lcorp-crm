@@ -13,7 +13,7 @@ class PermissionsController extends Controller
     public function index(){
 
         $permissions = Permission::with(['user:id,name', 'project:id,name'])
-            ->select(['id', 'project_id', user_id])
+            ->select(['id', 'project_id', 'user_id'])
             ->simplePaginate(20);
 
         return response()->json(['permissions' => $permissions]);
@@ -21,7 +21,7 @@ class PermissionsController extends Controller
 
     public function show($id){
 
-        $permissions = Permissions::find($id);
+        $permissions = Permission::find($id);
 
         if(!$permissions){
             return response()->json(['error' => 'Разрешение не найдено'], 404);
@@ -30,17 +30,17 @@ class PermissionsController extends Controller
         return response()->json(['permissions' => $permissions], 200);
     }
 
-    public function store(StoreRequests $requests, $id){
+    public function store(StoreRequests $request, $id){
 
-        $permissions = Permissions::create([
-            'project_id' => $requests->project_id,
-            'user_id' => $requests->user_id,
-            'fields' => $requests->fields,
-            'manage_leeds' => $requests->manage_leeds,
-            'export_data' => $requests->export_data,
-            'manage_permissions' => $requests->manage_permissions,
-            'manage_settings' => $requests->manage_settings,
-            'manage_project' => $requests->manage_project,
+        $permissions = Permission::create([
+            'project_id' => $request->project_id,
+            'user_id' => $request->user_id,
+            'fields' => $request->fields,
+            'manage_leeds' => $request->manage_leeds,
+            'export_data' => $request->export_data,
+            'manage_permissions' => $request->manage_permissions,
+            'manage_settings' => $request->manage_settings,
+            'manage_project' => $request->manage_project,
         ]);
 
         if(!$permissions){
@@ -50,7 +50,7 @@ class PermissionsController extends Controller
         return response()->json(['success' => 'Разрешение успешно добавлено'], 200);
     }
 
-    public function update(UpdateRequests $requests, $id){
+    public function update(UpdateRequests $request, $id){
 
         $permissions = Permission::find($id);
 
@@ -59,20 +59,20 @@ class PermissionsController extends Controller
         }
 
         $permissions->update([
-            'project_id' => $requests->project_id,
-            'user_id' => $requests->user_id,
-            'fields' => $requests->fields,
-            'manage_leeds' => $requests->manage_leeds,
-            'export_data' => $requests->export_data,
-            'manage_permissions' => $requests->manage_permissions,
-            'manage_settings' => $requests->manage_settings,
-            'manage_project' => $requests->manage_project,
+            'project_id' => $request->project_id,
+            'user_id' => $request->user_id,
+            'fields' => $request->fields,
+            'manage_leeds' => $request->manage_leeds,
+            'export_data' => $request->export_data,
+            'manage_permissions' => $request->manage_permissions,
+            'manage_settings' => $request->manage_settings,
+            'manage_project' => $request->manage_project,
         ]);
 
         return response()->json(['success' => 'Разрешение успешно обновлено'], 200);
     }
 
-    public function destroy(Requests $requests, $id){
+    public function destroy(Request $request, $id){
 
         $permissions = Permission::find($id);
 
