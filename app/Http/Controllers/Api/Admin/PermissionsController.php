@@ -12,36 +12,30 @@ class PermissionsController extends Controller
 {
     public function index(){
 
-        $permissions = Permission::with(['user:id,name', 'project:id,name'])
-            ->select(['id', 'project_id', 'user_id'])
-            ->simplePaginate(20);
-
-        return response()->json(['permissions' => $permissions]);
-    }
-
-    public function show($id){
-
-        $permissions = Permission::find($id);
-
-        if(!$permissions){
-            return response()->json(['error' => 'Разрешение не найдено'], 404);
-        }
+        $permissions = \App\Jobs\Permission\Index::dispatchSync();
 
         return response()->json(['permissions' => $permissions], 200);
     }
 
-    public function store(StoreRequests $request, $id){
+    public function show($permissionsId){
 
-        $permissions = Permission::create([
-            'project_id' => $request->project_id,
-            'user_id' => $request->user_id,
-            'fields' => $request->fields,
-            'manage_leeds' => $request->manage_leeds,
-            'export_data' => $request->export_data,
-            'manage_permissions' => $request->manage_permissions,
-            'manage_settings' => $request->manage_settings,
-            'manage_project' => $request->manage_project,
-        ]);
+        $permissions = \App\Jobs\Permission\Show::dispatchSync($permissionsId);
+
+        return response()->json(['permissions' => $permissions], 200);
+    }
+
+    public function store(Request $request){
+
+        $permissions = \App\Jobs\Permission\Create::dispatchSync(
+            project_id: $request->project_id,
+            user_id: $request->user_id,
+            fields: $request->fields,
+            manage_leads: $request->manage_leads,
+            export_data: $request->export_data,
+            manage_permissions: $request->manage_permissions,
+            manage_settings: $request->manage_settings,
+            manage_project: $request->manage_project,
+        );
 
         if(!$permissions){
             return response()->json(['error' => 'Ошибка в добавлении разрешения'], 401);
@@ -50,37 +44,26 @@ class PermissionsController extends Controller
         return response()->json(['success' => 'Разрешение успешно добавлено'], 200);
     }
 
-    public function update(UpdateRequests $request, $id){
+    public function update(Request $request, $permissionsId){
 
-        $permissions = Permission::find($id);
-
-        if(!$permissions){
-            return response()->json(['error' => 'Разрешение не найдено'], 404);
-        }
-
-        $permissions->update([
-            'project_id' => $request->project_id,
-            'user_id' => $request->user_id,
-            'fields' => $request->fields,
-            'manage_leeds' => $request->manage_leeds,
-            'export_data' => $request->export_data,
-            'manage_permissions' => $request->manage_permissions,
-            'manage_settings' => $request->manage_settings,
-            'manage_project' => $request->manage_project,
-        ]);
+        $permissions = \App\Jobs\Permission\Update::dispatchSync(
+            permissionsId: $permissionsId,
+            project_id: $request->project_id,
+            user_id: $request->user_id,
+            fields: $request->fields,
+            manage_leads: $request->manage_leads,
+            export_data: $request->export_data,
+            manage_permissions: $request->manage_permissions,
+            manage_settings: $request->manage_settings,
+            manage_project: $request->manage_project,
+        );
 
         return response()->json(['success' => 'Разрешение успешно обновлено'], 200);
     }
 
-    public function destroy(Request $request, $id){
+    public function destroy(Request $request, $permissionsId){
 
-        $permissions = Permission::find($id);
-
-        if(!$permissions){
-            return response()->json(['error' => 'Разрешение не найдено'], 404);
-        }
-
-        $permissions->delete();
+        $permissions = \App\Jobs\Permission\Delete::dispatchSync($permissionsId);
 
         return response()->json(['success' => 'Разрешение успешно удалено'], 200);
     }
