@@ -10,6 +10,7 @@ class Role extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'create_projects',
         'manage_users',
         'manage_permissions',
