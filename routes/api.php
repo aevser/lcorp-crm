@@ -8,7 +8,7 @@ use App\Http\Controllers\Api;
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('projects', Api\Admin\ProjectController::class)->only([
-        'index', 'store'
+        'index', 'store', 'update', 'destroy'
     ]);
 });
 Route::apiResource('permissions', Api\Admin\PermissionsController::class)->only([

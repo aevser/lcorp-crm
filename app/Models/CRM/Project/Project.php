@@ -27,7 +27,7 @@ class Project extends Model
         return $this->hasMany(Permission::class);
     }
 
-    public function users(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }
