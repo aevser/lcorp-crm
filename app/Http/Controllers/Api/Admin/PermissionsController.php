@@ -37,10 +37,6 @@ class PermissionsController extends Controller
             manage_project: $request->manage_project,
         );
 
-        if(!$permissions){
-            return response()->json(['error' => 'Ошибка в добавлении разрешения'], 401);
-        }
-
         return response()->json(['success' => 'Разрешение успешно добавлено'], 200);
     }
 

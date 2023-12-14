@@ -12,12 +12,12 @@ class Create
     public function __construct(
         private int $project_id,
         private int $user_id,
-        private ?int $fields,
-        private ?int $manage_leads,
-        private ?int $export_data,
-        private ?int $manage_permissions,
-        private ?int $manage_settings,
-        private ?int $manage_project,
+        private ?array $fields,
+        private ?bool $manage_leads,
+        private ?bool $export_data,
+        private ?bool $manage_permissions,
+        private ?bool $manage_settings,
+        private ?bool $manage_project,
 
     )
 
@@ -37,6 +37,10 @@ class Create
             'manage_settings' => $this->manage_settings,
             'manage_project' => $this->manage_project,
         ]);
+
+        if(!$permissions){
+            return response()->json(['error' => 'Ошибка в добавлении разрешения'], 401);
+        }
 
         return $permissions;
     }

@@ -13,12 +13,12 @@ class Update
         private int $permissionsId,
         private int $project_id,
         private int $user_id,
-        private ?int $fields,
-        private ?int $manage_leads,
-        private ?int $export_data,
-        private ?int $manage_permissions,
-        private ?int $manage_settings,
-        private ?int $manage_project,
+        private ?array $fields,
+        private ?bool $manage_leads,
+        private ?bool $export_data,
+        private ?bool $manage_permissions,
+        private ?bool $manage_settings,
+        private ?bool $manage_project,
 
     )
 
