@@ -4,6 +4,7 @@ namespace App\Models\CRM\Project;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Project extends Model
 {
@@ -24,5 +25,9 @@ class Project extends Model
 
     public function permissions(){
         return $this->hasMany(Permission::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
