@@ -8,11 +8,6 @@ use Illuminate\Auth\Access\Response;
 
 class ProjectPolicy
 {
-    public function viewAny(User $user): bool
-    {
-        //
-    }
-
     public function view(User $user, Project $project)
     {
         return true;
