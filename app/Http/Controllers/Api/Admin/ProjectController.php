@@ -13,8 +13,8 @@ class ProjectController extends Controller
     public function index(){
 
         $project = Project::with(['user:id,name'])
-                ->select(['id', 'name', 'user_id'])
-                ->simplePaginate(20);
+            ->select(['id', 'name', 'user_id'])
+            ->simplePaginate(20);
 
         return response()->json(['project' => $project], 200);
     }

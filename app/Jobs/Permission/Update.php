@@ -19,7 +19,6 @@ class Update
         private ?bool $manage_permissions,
         private ?bool $manage_settings,
         private ?bool $manage_project,
-
     )
 
     {

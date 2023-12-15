@@ -13,6 +13,7 @@ class Delete
     public function __construct(
         private $rolesId
     )
+    
     {
         //
     }

@@ -16,7 +16,6 @@ class Create
         private ?bool $manage_permissions,
         private ?bool $edit_projects,
         private ?bool $global_settings,
-
     )
 
     {
