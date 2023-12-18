@@ -19,7 +19,7 @@ class Delete
 
     public function handle()
     {
-        $permission = Permission::findOrFail($this->permissionsId)->delete();
+        $permission = Permission::destroy($this->permissionsId);
 
         return $permission;
     }

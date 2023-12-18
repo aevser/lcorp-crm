@@ -20,7 +20,7 @@ class Delete
 
     public function handle()
     {
-        $roles = Role::findOrFail($this->rolesId)->delete();
+        $roles = Role::destroy($this->rolesId);
 
         return $roles;
     }
