@@ -12,21 +12,21 @@ class PermissionsController extends Controller
 {
     public function index(){
 
-        $permissions = \App\Jobs\Permission\Index::dispatchSync();
+        $permissions = \App\Jobs\Permissions\Index::dispatchSync();
 
         return response()->json(['permissions' => $permissions], 200);
     }
 
     public function show($permissionsId){
 
-        $permissions = \App\Jobs\Permission\Show::dispatchSync($permissionsId);
+        $permissions = \App\Jobs\Permissions\Show::dispatchSync($permissionsId);
 
         return response()->json(['permissions' => $permissions], 200);
     }
 
     public function store(Request $request){
 
-        $permissions = \App\Jobs\Permission\Create::dispatchSync(
+        $permissions = \App\Jobs\Permissions\Create::dispatchSync(
             project_id: $request->project_id,
             user_id: $request->user_id,
             fields: $request->fields,
@@ -42,7 +42,7 @@ class PermissionsController extends Controller
 
     public function update(Request $request, $permissionsId){
 
-        $permissions = \App\Jobs\Permission\Update::dispatchSync(
+        $permissions = \App\Jobs\Permissions\Update::dispatchSync(
             permissionsId: $permissionsId,
             project_id: $request->project_id,
             user_id: $request->user_id,
@@ -59,7 +59,7 @@ class PermissionsController extends Controller
 
     public function destroy(Request $request, $permissionsId){
 
-        $permissions = \App\Jobs\Permission\Delete::dispatchSync($permissionsId);
+        $permissions = \App\Jobs\Permissions\Delete::dispatchSync($permissionsId);
 
         return response()->json(['success' => 'Разрешение успешно удалено'], 200);
     }
