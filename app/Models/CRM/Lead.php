@@ -4,6 +4,7 @@ namespace App\Models\CRM;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CRM\Project\Project;
 
 class Lead extends Model
 {
@@ -40,4 +41,8 @@ class Lead extends Model
         'utm_term',
         'nextcall_date',
     ];
+
+    public function project(){
+        return $this->belongTo(Project::class);
+    }
 }

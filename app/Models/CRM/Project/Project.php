@@ -5,6 +5,7 @@ namespace App\Models\CRM\Project;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\CRM\Lead;
 
 class Project extends Model
 {
@@ -31,6 +32,10 @@ class Project extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function leads(){
+        return $this->hasMany(Lead::class);
     }
 }
 
