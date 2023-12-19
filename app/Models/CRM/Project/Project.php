@@ -20,7 +20,9 @@ class Project extends Model
         'enabled',
         'lead_validation_days',
         'detect_region',
-        'calltracking'
+        'calltracking',
+        'leads_today',
+        'leads_total',
     ];
 
     public function permissions(){
