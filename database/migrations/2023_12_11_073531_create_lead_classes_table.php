@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('color');
             $table->unsignedBigInteger('project_id');
             $table->timestamps();
+
+            $table->index([
+                'project_id',
+            ]);
         });
     }
 

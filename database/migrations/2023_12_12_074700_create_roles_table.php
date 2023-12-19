@@ -22,6 +22,10 @@ return new class extends Migration
             $table->boolean('edit_projects');
             $table->boolean('global_settings');
             $table->timestamps();
+
+            $table->index([
+                'user_id',
+            ]);
         });
     }
 

@@ -23,7 +23,15 @@ return new class extends Migration
             $table->unsignedInteger('lead_validation_days')->nullable();
             $table->boolean('detect_region')->nullable();
             $table->boolean('calltracking')->nullable();
+            $table->unsignedInteger('leads_today');
+            $table->unsignedInteger('leads_total');
             $table->timestamps();
+
+            $table->index([
+                'user_id',
+                'leads_today',
+                'leads_total',
+            ]);
         });
     }
 

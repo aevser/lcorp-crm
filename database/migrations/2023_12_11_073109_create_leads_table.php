@@ -43,6 +43,11 @@ return new class extends Migration
             $table->string('utm_term')->nullable();
             $table->dateTime('nextcall_date')->nullable();
             $table->timestamps();
+
+            $table->index([
+                'class_id',
+                'project_id',
+            ]);
         });
     }
 

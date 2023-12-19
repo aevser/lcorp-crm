@@ -24,6 +24,11 @@ return new class extends Migration
             $table->boolean('manage_settings');
             $table->boolean('manage_project');
             $table->timestamps();
+
+            $table->index([
+                'user_id',
+                'project_id',
+            ]);
         });
     }
 
