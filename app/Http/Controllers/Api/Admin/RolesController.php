@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Roles\StoreRequests;
-use App\Http\Requests\Roles\UpdateRequests;
+use App\Http\Requests\Roles\Store;
+use App\Http\Requests\Roles\Update;
 use App\Models\CRM\Role;
 
 class RolesController extends Controller
@@ -24,7 +24,7 @@ class RolesController extends Controller
         return response()->json(['roles' => $roles], 200);
     }
 
-    public function store(Request $request){
+    public function store(Requests\Store $request){
 
         $roles = \App\Jobs\Roles\Create::dispatchSync(
             user_id: $request->user_id,
@@ -38,7 +38,7 @@ class RolesController extends Controller
         return response()->json(['success' => 'Роль успешно добавлена'], 200);
     }
 
-    public function update(Request $request, $rolesId){
+    public function update(Requests\Update $request, $rolesId){
 
         $roles = \App\Jobs\Roles\Update::dispatchSync(
             rolesId: $rolesId,

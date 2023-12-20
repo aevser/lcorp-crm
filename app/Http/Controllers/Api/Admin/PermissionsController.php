@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Permissions\StoreRequests;
-use App\Http\Requests\Permissions\UpdateRequests;
+use App\Http\Requests\Permissions\Store;
+use App\Http\Requests\Permissions\Update;
 use App\Models\Permission;
 
 class PermissionsController extends Controller
@@ -24,7 +24,7 @@ class PermissionsController extends Controller
         return response()->json(['permissions' => $permissions], 200);
     }
 
-    public function store(Request $request){
+    public function store(Requests\Store $request){
 
         $permissions = \App\Jobs\Permissions\Create::dispatchSync(
             project_id: $request->project_id,
@@ -40,7 +40,7 @@ class PermissionsController extends Controller
         return response()->json(['success' => 'Разрешение успешно добавлено'], 200);
     }
 
-    public function update(Request $request, $permissionsId){
+    public function update(Requests\Update $request, $permissionsId){
 
         $permissions = \App\Jobs\Permissions\Update::dispatchSync(
             permissionsId: $permissionsId,

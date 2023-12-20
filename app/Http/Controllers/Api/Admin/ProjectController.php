@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\Project\Store;
 use App\Models\CRM\Project\Project;
 use App\Models\User;
 
@@ -43,7 +44,7 @@ class ProjectController extends Controller
         return response()->json(['success' => 'Проект успешно добавлен'], 200);
     }
 
-    public function update(Request $request, Project $project){
+    public function update(Requests\Update $request, Project $project){
 
         $this->authorize('update', $project);
 
